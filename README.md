@@ -1,4 +1,7 @@
-## Invictus Street Legal Racing: Redline SCX Model Importer
+## io_invo_scx
+Blender Addon that import s SLRR SCX models.
+
+Requires Blender 3.6
 
 #### Features
  - [ ] Import SCX/SCY v3
@@ -15,3 +18,4 @@
    - [ ] Bump Map Normal
 
 ###### Tested on [SLRR Light Edition](https://vk.com/slrr_le), SLRR by Jack v2 and some other shitty mods.
+###### Big Thanks **Amilmand** for file struct.
