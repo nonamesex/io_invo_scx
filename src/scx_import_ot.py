@@ -1,10 +1,12 @@
 import os
+
 import bpy
 from bpy.props import StringProperty, BoolProperty, CollectionProperty
 from bpy.types import Operator
 from bpy_extras.io_utils import ImportHelper
 
 from .scx_import import scx_import
+from .scx_v3 import setup_flags as setup_flags_v3
 from .scx_v4 import setup_flags as setup_flags_v4
 
 empty_set = set()
@@ -12,7 +14,7 @@ empty_set = set()
 class SCX_OT_import(Operator, ImportHelper):
     bl_idname = 'import_mesh.scx'
     bl_label = 'Import (.scx/.scy)'
-    bl_options = {'INTERNAL', 'UNDO', 'PRESET'}
+    bl_options = {'INTERNAL', 'UNDO'}
 
     __doc__ = 'Load a SCX file'
 
@@ -45,12 +47,8 @@ class SCX_OT_import(Operator, ImportHelper):
         dir = os.path.dirname(self.filepath)
         files = [os.path.join(dir, i.name) for j, i in enumerate(self.files)]
 
-        setup_flags_v4(
-            self.join_meshes,
-            self.re_use_materials,
-            self.skip_doubleside_faces
-        )
-
+        setup_flags_v3(self.join_meshes, self.re_use_materials, self.skip_doubleside_faces)
+        setup_flags_v4(self.join_meshes, self.re_use_materials, self.skip_doubleside_faces)
         scx_import(files)
 
         self.report({'INFO'}, f'SCX imported')

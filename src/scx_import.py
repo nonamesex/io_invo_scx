@@ -1,12 +1,11 @@
 import os
 from pathlib import Path
-from .BinaryReader import BinaryReader
 
+from .BinaryReader import BinaryReader
 from .scx_v3 import (
     read_scx_data as read_scx_data_v3,
     build_mesh as build_mesh_v3
 )
-
 from .scx_v4 import (
     read_scx_data as read_scx_data_v4,
     build_mesh as build_mesh_v4
@@ -67,7 +66,7 @@ def import_scx(scx_path: str):
     tex_list = read_tex_list(scx_path)
     if scx_data:
         if scx_data["version"] == 3:
-            build_mesh_v3()
+            build_mesh_v3(scx_data["meshes"], scx_name, tex_list)
         elif scx_data["version"] == 4:
             build_mesh_v4(scx_data["meshes"], scx_name, tex_list)
 

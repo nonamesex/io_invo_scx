@@ -4,7 +4,7 @@ bl_info = {
     "description": "Import SCX v4 meshes",
     "version": (1, 0, 0),
     "blender": (3, 6, 0),
-    "warning": "Using this tool causes autism. \nSCX v3 not supported yet.",
+    "warning": "Using this tool causes autism.",
     "doc_url": "https://github.com/nonamesex/io_invo_scx",
     "tracker_url": "https://github.com/nonamesex/io_invo_scx/issues",
     "category": "Import"
@@ -12,18 +12,16 @@ bl_info = {
 
 if 'bpy' in locals():
     import importlib
-
     importlib.reload(scx_import_ot)
 else:
     from .src import scx_import_ot
 
 import bpy
-from bpy.props import PointerProperty
 
 classes = scx_import_ot.classes
 
 def scx_import_menu_func(self, context):
-    self.layout.operator(scx_import_ot.SCX_OT_import.bl_idname, text='Invictus SLRR SCX (.scx/.scy)')
+    self.layout.operator(scx_import_ot.SCX_OT_import.bl_idname, text='Invictus SLRR Model (.scx/.scy)')
 
 def register():
     for cls in classes:
